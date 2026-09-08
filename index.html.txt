@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Love Pages</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  body {
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+  }
+
+  .page {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .active {
+    display: flex;
+  }
+
+  /* Intro */
+  #intro {
+    background: #000;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .rose {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    opacity: 0.9;
+    object-fit: contain;
+    filter: brightness(0.4);
+  }
+
+  .rose.tl { top: 20px; left: 20px; }
+  .rose.tr { top: 20px; right: 20px; transform: scaleX(-1); }
+  .rose.bl { bottom: 20px; left: 20px; transform: scaleY(-1); }
+  .rose.br { bottom: 20px; right: 20px; transform: scale(-1); }
+
+  .letter {
+    width: 170px;
+    height: 170px;
+    background: #ff6fb1;
+    color: white;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255, 111, 177, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none;
+  }
+
+  .letter.pulse {
+    transform: scale(1.08);
+  }
+
+  .letter.pop {
+    animation: pop 0.6s ease forwards;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+  }
+
+  /* Generic theme pages */
+  .theme-page {
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px;
+  }
+
+  .content-box {
+    width: 90%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .pic {
+    width: 360px;
+    height: 420px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+    background: rgba(255,255,255,0.1);
+  }
+
+  .text-box {
+    flex: 1;
+    min-height: 220px;
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: 26px;
+    line-height: 1.6;
+  }
+
+  /* Page themes */
+  #page1 {
+    background: linear-gradient(135deg, #ffb6d9, #ff7fb8);
+  }
+
+  #page2 {
+    background: linear-gradient(135deg, #111, #2a2a2a);
+  }
+
+  #page3 {
+    background: linear-gradient(135deg, #2d7dbf, #8edbff);
+  }
+
+  #page4 {
+    background: linear-gradient(135deg, #8b1f2f, #d9a441);
+  }
+
+  #page5 {
+    background:
+      linear-gradient(rgba(255,255,255,0.15), rgba(255,255,255,0.15)),
+      repeating-linear-gradient(
+        to bottom,
+        #f8f0df 0px,
+        #f8f0df 34px,
+        #e8d9b8 35px
+      );
+    color: #2c1e12;
+    padding: 40px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #page5 .notebook {
+    width: 90%;
+    max-width: 1100px;
+    min-height: 80vh;
+    background: rgba(255,255,255,0.7);
+    border-radius: 25px;
+    padding: 40px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    overflow-y: auto;
+  }
+
+  #page5 h1 {
+    margin-bottom: 20px;
+    color: #5a3417;
+  }
+
+  #loveText {
+    font-size: 24px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+  }
+
+  .nav-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    background: #ff4f9a;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 900px) {
+    .content-box {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .pic {
+      width: 85%;
+      height: 320px;
+    }
+
+    .text-box {
+      font-size: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Intro -->
+<div class="page active" id="intro">
+  <img class="rose tl" src="images/black-rose.png" alt="rose">
+  <img class="rose tr" src="images/black-rose.png" alt="rose">
+  <img class="rose bl" src="images/black-rose.png" alt="rose">
+  <img class="rose br" src="images/black-rose.png" alt="rose">
+
+  <div class="letter" id="letter">Letter</div>
+</div>
+
+<!-- Page 1 -->
+<div class="page theme-page" id="page1">
+  <div class="content-box">
+    <img class="pic" src="https://cdn.discordapp.com/attachments/1487909347458678995/1546796540369174578/IMG_8177.png?ex=6aa11609&is=6a9fc489&hm=209232ac9dfff5ea2323a36b0b977a05c22f37f98f64993eab49db84fc1167bd&" alt="page 1 photo">
+    <div class="text-box">
+      Remember we did this baby. It was so cute and I am pretty sure it’s still flying as a memory in the game, maybe we won’t be able to see it but it will forever stay there and just like that I want to be forever stick beside you like that rest of my life.
+    </div>
+  </div>
+  <button class="nav-btn" onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 2 -->
+<div class="page theme-page" id="page2">
+  <div class="content-box">
+    <img class="pic" src="https://cdn.discordapp.com/attachments/1487909347458678995/1546797958584995880/IMG_6837.jpg?ex=6aa1175b&is=6a9fc5db&hm=867e12d85691a82b9cc5c7ac4bee59e081459140b5d667a6d90c8f13af320430&" alt="page 2 photo">
+    <div class="text-box">
+      This picture was at the end of January.
+      We used to play Violence District all the time, do you remember? I used to feel so excited whenever we played together. You know, I also got mad once because you kept on killing me 😭 I thought we were gonna team up, baby!!
+    </div>
+  </div>
+  <button class="nav-btn" onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 3 -->
+<div class="page theme-page" id="page3">
+  <div class="content-box">
+    <img class="pic" src="https://cdn.discordapp.com/attachments/1487909347458678995/1546799498955726858/IMG_6859.png?ex=6aa118ca&is=6a9fc74a&hm=5312060d484b025e699171595ab6fef91b1bfe308e3b1832f3f622715d57efb3&" alt="page 3 photo">
+    <div class="text-box">
+      This is the time we were playing while screen sharing . Remember we both got scared when there was a guy breaking in and we both died instantly it was so boring but we still laughed do u know why because whenever we both play together something it is always fun no matter how boring it is.
+    </div>
+  </div>
+  <button class="nav-btn" onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 4 -->
+<div class="page theme-page" id="page4">
+  <div class="content-box">
+    <img class="pic" src="https://cdn.discordapp.com/attachments/1487909347458678995/1546801955047739392/IMG_6734.png?ex=6aa11b14&is=6a9fc994&hm=9f9dbb2f838b8386ecbbe944c56c5bb1f91f0cc3736f676cc64bd25157576bb4&" alt="page 4 photo">
+    <div class="text-box">
+      Do you remember this ? This picture is my favorite picture of us taking you were so cute and this was our first pic together when we were playing your little attention and time means so much to me.
+    </div>
+  </div>
+  <button class="nav-btn" onclick="nextPage()">Next</button>
+</div>
+
+<!-- Page 5 -->
+<div class="page" id="page5">
+  <div class="notebook">
+    <h1>My Love Letter</h1>
+    <div id="loveText">Lawmi, I am sorry that I wasn’t a good boyfriend. I apologize to your heart . I hope it gives me a chance again to make you feel my love completely again. I want to take care it by proving my actions I won’t hurt it again. I promise to your heart I will be a better person before I marry you. I will never do such things I did to you again. I don’t want to hurt you and force you to stay with me for nothing . I will prove that I changed and when the time comes I will go to u I will prove give u the love you need and I will be the man who is strong and can handle anything for you. Your jealousy, your anger , your sadness everything matters to me. I love you so much Mimi. You mean the whole world to me. I will be a better person I promise to you. I won’t be desperate I will be someone worthy for you. I love you again Mimi. 
+
+Your Boyfriend. Arian.</div>
+  </div>
+</div>
+
+<script>
+  const pages = ["intro", "page1", "page2", "page3", "page4", "page5"];
+  let currentPage = 0;
+  let clickCount = 0;
+  const letter = document.getElementById("letter");
+
+  letter.addEventListener("click", () => {
+    clickCount++;
+    letter.classList.add("pulse");
+
+    setTimeout(() => letter.classList.remove("pulse"), 200);
+
+    if (clickCount >= 10) {
+      letter.classList.add("pop");
+      setTimeout(() => {
+        showPage(1);
+      }, 600);
+    }
+  });
+
+  function showPage(index) {
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(pages[index]).classList.add("active");
+    currentPage = index;
+  }
+
+  function nextPage() {
+    if (currentPage < pages.length - 1) {
+      showPage(currentPage + 1);
+    }
+  }
+</script>
+</body>
+</html>
+turn this into the file
